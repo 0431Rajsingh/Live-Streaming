@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebRTC Live Streaming</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>WebRTC Live Streaming</h1>
+    
+    <div class="video-container">
+      <h2>Local Video (You)</h2>
+      <video id="localVideo" autoplay muted playsinline></video>
+    </div>
+
+    <div class="video-container">
+      <h2>Remote Videos</h2>
+      <div id="remoteVideos"></div>
+    </div>
+
+    <div id="status">Status: Ready</div>
+    
+    <div class="button-group">
+      <button id="startBtn">Start Stream</button>
+      <button id="joinBtn">Join Stream</button>
+    </div>
+  </div>
+
+  <script type="module">
+    const startBtn = document.getElementById('startBtn');
+    const joinBtn = document.getElementById('joinBtn');
+    const statusDiv = document.getElementById('status');
+
+    function updateStatus(message) {
+      statusDiv.textContent = `Status: ${message}`;
+      console.log(message);
+    }
+
+    function handleError(error) {
+      console.error(error);
+      updateStatus(`Error: ${error.message}`);
+      startBtn.disabled = false;
+      joinBtn.disabled = false;
+    }
+
+    startBtn.addEventListener('click', async () => {
+      updateStatus("Starting stream...");
+      startBtn.disabled = true;
+      joinBtn.disabled = true;
+      try {
+        const { startStreaming } = await import('./streamer.js');
+        startStreaming(updateStatus, handleError);
+      } catch (err) {
+        handleError(err);
+      }
+    });
+
+    joinBtn.addEventListener('click', async () => {
+      updateStatus("Joining stream...");
+      startBtn.disabled = true;
+      joinBtn.disabled = true;
+      try {
+        const { joinStream } = await import('./viewer.js');
+        joinStream(updateStatus, handleError);
+      } catch (err) {
+        handleError(err);
+      }
+    });
+  </script>
+</body>
+</html>
