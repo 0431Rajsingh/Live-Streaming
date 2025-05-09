@@ -1,6 +1,6 @@
 # Live-Streaming 🔴
 
-The **Video Streaming Website** enables real-time video broadcasting and viewing over the web. This project uses **WebRTC** for peer-to-peer streaming and **Firebase Realtime Database** for signaling, allowing a **streamer** to go live and multiple **viewers** to watch it simultaneously.
+The **Live Streaming Website** enables real-time video broadcasting and viewing over the web. This project uses **WebRTC** for peer-to-peer streaming and **Firebase Realtime Database** for signaling, allowing a **streamer** to go live and multiple **viewers** to watch it simultaneously.
 
 The goal is to create a fast, simple, and scalable live streaming experience using only front-end technologies without the need for media servers.
 
