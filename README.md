@@ -50,3 +50,32 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
+```
+3. 📡 Open index.html in your browser (you can use Live Server in VS Code or any HTTP server).
+
+4. 🎬 Click Start Stream to begin broadcasting.
+
+5. 👥 Open the same page in another tab or device and click Join Stream to start watching.
+
+Future Improvements 🚀
+1. 🔒 Firebase Auth for stream privacy
+
+2. 🎙 Two-way video/audio (WebRTC DataChannels)
+
+3. 📼 Stream recording or archiving
+
+4. 🧑‍🤝‍🧑 Room management and private session links
+
+5. 📡 Replace Firebase with a custom signaling server for more control
+
+6. 🧪 ICE candidate handling (currently simplified)
+
+Notes 📌
+
+-> This is a one-way streaming app – only the streamer sends video/audio.
+
+-> All peer connection logic is handled in streamer.js and viewer.js.
+
+-> Firebase is used only for signaling (not actual media streaming).
+
+-> STUN server is provided via Google's public STUN: stun:stun.l.google.com:19302.
